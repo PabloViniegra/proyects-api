@@ -1,0 +1,71 @@
+###
+# Projects API Examples
+# Use with REST Client extension in VS Code
+###
+
+@baseUrl = http://localhost:3000
+
+### Health Check
+GET {{baseUrl}}/health
+
+### Create a new project
+POST {{baseUrl}}/projects
+Content-Type: application/json
+
+{
+  "name": "Rust Web API",
+  "description": "A modern REST API built with Rust and Axum",
+  "repository_url": "https://github.com/example/rust-web-api",
+  "language": "Rust"
+}
+
+### Create another project
+POST {{baseUrl}}/projects
+Content-Type: application/json
+
+{
+  "name": "Python Data Science",
+  "description": "Machine learning and data analysis project",
+  "repository_url": "https://github.com/example/python-ml",
+  "language": "Python"
+}
+
+### List all projects
+GET {{baseUrl}}/projects
+
+### Get a specific project (replace with actual UUID)
+GET {{baseUrl}}/projects/550e8400-e29b-41d4-a716-446655440000
+
+### Update a project (replace with actual UUID)
+PUT {{baseUrl}}/projects/550e8400-e29b-41d4-a716-446655440000
+Content-Type: application/json
+
+{
+  "name": "Updated Project Name",
+  "description": "Updated description with more details"
+}
+
+### Partial update - only name (replace with actual UUID)
+PUT {{baseUrl}}/projects/550e8400-e29b-41d4-a716-446655440000
+Content-Type: application/json
+
+{
+  "language": "Rust 2024"
+}
+
+### Delete a project (replace with actual UUID)
+DELETE {{baseUrl}}/projects/550e8400-e29b-41d4-a716-446655440000
+
+### Test validation error - name too long
+POST {{baseUrl}}/projects
+Content-Type: application/json
+
+{
+  "name": "a",
+  "description": "Test",
+  "repository_url": "invalid-url",
+  "language": "Rust"
+}
+
+### Test 404 error - project not found
+GET {{baseUrl}}/projects/00000000-0000-0000-0000-000000000000
